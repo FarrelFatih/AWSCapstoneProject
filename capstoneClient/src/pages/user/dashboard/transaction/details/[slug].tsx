@@ -21,7 +21,7 @@ const UserTransactionDetailPage = ({ user }: { user: userType }) => {
   const { getTransactionByID, transactions } = useAppStore();
   React.useEffect(() => {
     getTransactionByID(id);
-  }, [id]);
+  }, []);
   console.log(transactions);
 
   if (!transactions) {
@@ -43,7 +43,7 @@ const UserTransactionDetailPage = ({ user }: { user: userType }) => {
       <main className="bg-secondary-100 ">
         <Seo templateTitle="Transaction Detail" />
         <Navbar id={user?.id} role={user?.role} />
-        <Layout className="flex flex-col max-w-5xl h-screen">
+        <Layout className="flex flex-col max-w-5xl">
           <Typography variant="h3" color="primary">
             Transaction Detail
           </Typography>

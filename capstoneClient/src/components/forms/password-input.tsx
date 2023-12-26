@@ -27,7 +27,7 @@ const PasswordInput = React.forwardRef<HTMLInputElement, InputProps>(
           {...props}
         />
         <div className=" absolute inset-y-0 right-0 flex items-center pr-3 z-[100]">
-          <button onClick={toggleText}>
+          <button onClick={toggleText} type="button">
             {showText ? (
               <IoEyeOffOutline className="text-typography-800" />
             ) : (

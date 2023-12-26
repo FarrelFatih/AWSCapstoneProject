@@ -11,7 +11,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/dropdown/dropdown";
 import axios from "axios";
-import { nextAPIUrl } from "@/constant/env";
+import { nextAPIUrl, nextUrl } from "@/constant/env";
 import { toast } from "react-toastify";
 import Link from "next/link";
 
@@ -91,7 +91,7 @@ export const paymentColumns: ColumnDef<paymentType>[] = [
             <DropdownMenuItem onClick={handlePay}>Pay</DropdownMenuItem>
             <DropdownMenuItem>
               <Link
-                href={`http://localhost:3000/user/dashboard/transaction/details/${paymentId}`}
+                href={`${nextUrl}/user/dashboard/transaction/details/${paymentId}`}
               >
                 Details
               </Link>

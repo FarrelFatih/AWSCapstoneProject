@@ -1,5 +1,6 @@
 import { StateCreator } from "zustand";
 import axios from "axios";
+import { nextAPIUrl } from "@/constant/env";
 
 export interface companyType {
   id: string;
@@ -42,7 +43,7 @@ export const companySlice: StateCreator<CompanyState> = (set, get) => ({
     axios.defaults.withCredentials = true;
     try {
       const res = await axios.get(
-        `${process.env.NEXT_PUBLIC_API}/company/getcompanybyid/${id}`,
+        `${nextAPIUrl}/company/getcompanybyid/${id}`,
         {
           withCredentials: true,
         }
@@ -56,7 +57,7 @@ export const companySlice: StateCreator<CompanyState> = (set, get) => ({
     axios.defaults.withCredentials = true;
     try {
       const res = await axios.get(
-        `${process.env.NEXT_PUBLIC_API}/layanan/company/getLayananById/${id}`,
+        `${nextAPIUrl}/layanan/company/getLayananById/${id}`,
         {
           withCredentials: true,
         }
@@ -69,12 +70,9 @@ export const companySlice: StateCreator<CompanyState> = (set, get) => ({
   getCompanyInfo: async () => {
     axios.defaults.withCredentials = true;
     try {
-      const res = await axios.get(
-        `${process.env.NEXT_PUBLIC_API}/decoded/getcompanyinfo`,
-        {
-          withCredentials: true,
-        }
-      );
+      const res = await axios.get(`${nextAPIUrl}/decoded/getcompanyinfo`, {
+        withCredentials: true,
+      });
       set({ company: res.data });
     } catch (error: any) {
       set({ errorMessage: error.message });

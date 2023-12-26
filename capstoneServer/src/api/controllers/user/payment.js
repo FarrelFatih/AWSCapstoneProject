@@ -7,7 +7,6 @@ const prisma = require("../../../configs/connection");
 router.get("/getPendingPayment/:id", async (req, res) => {
   try {
     const userId = req.params.id;
-
     const userPayment = await prisma.payment.findMany({
       where: { usersId: userId, status: "Pending" },
       include: {
@@ -20,7 +19,6 @@ router.get("/getPendingPayment/:id", async (req, res) => {
         },
       },
     });
-
     const mappedUserPayments = userPayment.map((payment) => ({
       id: payment.id,
       status: payment.status,
@@ -92,7 +90,8 @@ router.get("/getPaymentDetail/:id", async (req, res) => {
         },
       },
     });
-
+    console.log(id);
+    console.log(userPayment);
     // Fetch Layanan details separately using the included Layanan IDs
     const billingIds = userPayment.flatMap((payment) =>
       payment.Billing.map((billing) => billing.layananId)

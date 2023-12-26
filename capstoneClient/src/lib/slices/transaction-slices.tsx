@@ -1,5 +1,6 @@
 import { StateCreator } from "zustand";
 import axios from "axios";
+import { nextAPIUrl } from "@/constant/env";
 
 export type BillingItem = {
   duration: number;
@@ -60,7 +61,7 @@ export const transactionSlice: StateCreator<TransactionState> = (set, get) => ({
     try {
       axios.defaults.withCredentials = true;
       const res = await axios.get(
-        `${process.env.NEXT_PUBLIC_API}/userpayment/getPaidPayment/${id}`,
+        `${nextAPIUrl}/userpayment/getPaidPayment/${id}`,
         {
           withCredentials: true,
         }
@@ -74,7 +75,7 @@ export const transactionSlice: StateCreator<TransactionState> = (set, get) => ({
     try {
       axios.defaults.withCredentials = true;
       const res = await axios.get(
-        `${process.env.NEXT_PUBLIC_API}/userpayment/getPendingPayment/${id}`,
+        `${nextAPIUrl}/userpayment/getPendingPayment/${id}`,
         {
           withCredentials: true,
         }

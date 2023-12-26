@@ -17,6 +17,7 @@ import { Button } from "@/components/buttons/button";
 import { useRouter } from "next/router";
 import axios from "axios";
 import { toast } from "react-toastify";
+import { nextAPIUrl, nextUrl } from "@/constant/env";
 
 interface NavbarProps {
   role: string;
@@ -28,14 +29,14 @@ export default function Navbar({ role, id }: NavbarProps) {
   const logout = async () => {
     try {
       const res = await axios.post(
-        `${process.env.NEXT_PUBLIC_API}/authentication/logout`,
+        `${nextAPIUrl}/authentication/logout`,
         {},
         {
           withCredentials: true,
         }
       );
       if (res.status === 200) {
-        router.push("http://localhost:3000/");
+        router.push(`${nextUrl}`);
       }
     } catch (err: any) {
       toast.error(err?.response?.data?.message);
@@ -69,7 +70,7 @@ export default function Navbar({ role, id }: NavbarProps) {
                       className="flex gap-2 items-center w-full justify-start"
                       onClick={() => {
                         router.push(
-                          `http://localhost:3000/company/dashboard/profile/${id}`
+                          `${nextUrl}/company/dashboard/profile/${id}`
                         );
                       }}
                     >
@@ -135,9 +136,7 @@ export default function Navbar({ role, id }: NavbarProps) {
                     variant="ghost"
                     className="flex gap-2 items-center w-full justify-start"
                     onClick={() => {
-                      router.push(
-                        `http://localhost:3000/user/dashboard/profile/${id}`
-                      );
+                      router.push(`${nextUrl}/user/dashboard/profile/${id}`);
                     }}
                   >
                     <CiUser />
@@ -181,12 +180,12 @@ const userLinks = [
   {
     icon: BsActivity,
     name: "Activity Log",
-    link: "http://localhost:3000/user/dashboard/activity",
+    link: `${nextUrl}/user/dashboard/activity`,
   },
   {
     icon: CiSettings,
     name: "Account Settings",
-    link: "http://localhost:3000/user/dashboard/settings",
+    link: `${nextUrl}/user/dashboard/settings`,
   },
 ];
 
@@ -194,11 +193,11 @@ const adminLinks = [
   {
     icon: BsActivity,
     name: "Activity Log",
-    link: "http://localhost:3000/user/dashboard/activity",
+    link: `${nextUrl}/user/dashboard/activity`,
   },
   {
     icon: CiSettings,
     name: "Account Settings",
-    link: "http://localhost:3000/user/dashboard/settings",
+    link: `${nextUrl}/user/dashboard/settings`,
   },
 ];

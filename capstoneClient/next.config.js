@@ -11,7 +11,7 @@ module.exports = {
           },
           {
             key: "Access-Control-Allow-Origin",
-            value: "http://localhost:3000",
+            value: "process.env.NEXT_PUBLIC_API_URL",
           },
           // Add other headers if needed
         ],

@@ -1,5 +1,6 @@
 import { StateCreator } from "zustand";
 import axios from "axios";
+import { nextAPIUrl } from "@/constant/env";
 
 export interface userType {
   id: string;
@@ -54,12 +55,9 @@ export const userSlice: StateCreator<UserState> = (set, get) => ({
   getAllUser: async () => {
     try {
       axios.defaults.withCredentials = true;
-      const res = await axios.get(
-        `${process.env.NEXT_PUBLIC_API}/billing/company/getallusers`,
-        {
-          withCredentials: true,
-        }
-      );
+      const res = await axios.get(`${nextAPIUrl}/billing/company/getallusers`, {
+        withCredentials: true,
+      });
       set({ allUsers: res.data });
     } catch (err) {
       console.log(err);
@@ -68,12 +66,9 @@ export const userSlice: StateCreator<UserState> = (set, get) => ({
   getUserInfo: async () => {
     axios.defaults.withCredentials = true;
     try {
-      const res = await axios.get(
-        `${process.env.NEXT_PUBLIC_API}/decoded/getuserinfo`,
-        {
-          withCredentials: true,
-        }
-      );
+      const res = await axios.get(`${nextAPIUrl}/decoded/getuserinfo`, {
+        withCredentials: true,
+      });
       set({ users: res.data });
     } catch (error: any) {
       set({ errorMessage: error.message });
@@ -82,9 +77,7 @@ export const userSlice: StateCreator<UserState> = (set, get) => ({
   getProfile: async (id: string) => {
     axios.defaults.withCredentials = true;
     try {
-      const res = await axios.get(
-        `${process.env.NEXT_PUBLIC_API}/user/getuserbyid/${id}`
-      );
+      const res = await axios.get(`${nextAPIUrl}/user/getuserbyid/${id}`);
       set({ profile: res.data });
     } catch (error: any) {
       set({ errorMessage: error.message });

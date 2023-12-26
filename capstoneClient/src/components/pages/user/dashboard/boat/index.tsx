@@ -4,7 +4,7 @@ import { boatType, columns } from "@/modules/table/boat-user/columns";
 
 const UserBoat = ({ boats }: { boats: boatType[] }) => {
   return (
-    <main className={`${boats?.length % 5 === 0 ? "h-full" : "h-screen"}`}>
+    <main className={`${boats?.length < 2 ? "h-screen" : "h-full"}`}>
       <Typography variant="h3" color="primary">
         Boat Owned
       </Typography>

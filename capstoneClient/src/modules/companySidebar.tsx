@@ -13,6 +13,7 @@ import { FaAnchor } from "react-icons/fa";
 import { FaCircleUser, FaServicestack } from "react-icons/fa6";
 
 import { Button } from "@/components/buttons/button";
+import { nextUrl } from "@/constant/env";
 
 const CompanySidebar = () => {
   const router = useRouter();
@@ -27,7 +28,7 @@ const CompanySidebar = () => {
 
       <aside className="sidebar" data-collapse={isCollapsed}>
         <div className="sidebar__top pt-1">
-          <Link href="http://localhost:3000/admin/dashboard">
+          <Link href={`${nextUrl}/company/dashboard`}>
             {!isCollapsed ? (
               <img src="/images/logo-dark.png" alt="logo" className="w-24" />
             ) : (

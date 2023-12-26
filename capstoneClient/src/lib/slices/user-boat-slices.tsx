@@ -1,5 +1,6 @@
 import { StateCreator } from "zustand";
 import axios from "axios";
+import { nextAPIUrl } from "@/constant/env";
 
 export interface userBoatType {
   id: string;
@@ -31,7 +32,7 @@ export const userBoatSlice: StateCreator<UserBoatState> = (set, get) => ({
     axios.defaults.withCredentials = true;
     try {
       const res = await axios.get(
-        `${process.env.NEXT_PUBLIC_API}/kapal/user/getKapalById/${id}`,
+        `${nextAPIUrl}/kapal/user/getKapalById/${id}`,
         {
           withCredentials: true,
         }
@@ -44,7 +45,7 @@ export const userBoatSlice: StateCreator<UserBoatState> = (set, get) => ({
   getUserBoatById: async (id: string) => {
     try {
       const res = await axios.get(
-        `${process.env.NEXT_PUBLIC_API}/billing/company/getboatbyid/${id}`,
+        `${nextAPIUrl}/billing/company/getboatbyid/${id}`,
         { withCredentials: true }
       );
       set({ userBoats: res.data });
