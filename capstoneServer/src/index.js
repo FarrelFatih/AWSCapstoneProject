@@ -3,6 +3,7 @@ const jwt = require("jsonwebtoken");
 const cors = require("cors");
 const { config } = require("dotenv");
 const morgan = require("morgan");
+const serverless = require("serverless-http");
 
 // ----- # Import controllers # ----- //
 const userControllers = require("./api/controllers/user/user.js");
@@ -20,7 +21,16 @@ const app = express();
 const PORT = 8080;
 
 app.use(express.json());
-app.use(cors({ credentials: true, origin: "http://localhost:3000" }));
+
+app.use(
+  cors({
+    credentials: true,
+    origin: ["https://digitalpioneer.vercel.app", "http://localhost:3000"],
+    methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
+    allowedHeaders: "Content-Type,Authorization",
+  })
+);
+
 app.use(morgan("tiny"));
 config();
 
@@ -74,6 +84,17 @@ app.use("/api/layanan/company", verifyTokenCompany, companyLayananControllers);
 app.use("/api/billing/company", verifyTokenCompany, companybillingControllers);
 app.use("/api/userbilling/", verifyToken, userbillingControllers);
 app.use("/api/userpayment/", verifyToken, userpaymentControllers);
+
+app.get("/hello", (req, res) => {
+  res.send("Hello World!");
+});
+
 // ----- # Company routes # ----- //
 
-app.listen(PORT, () => console.log(`Running Express Server on Port ${PORT}!`));
+if (process.env.ENVIROMENT === "production") {
+  module.exports.handler = serverless(app);
+} else {
+  app.listen(PORT, () => {
+    console.log(`Server is running on port ${PORT}`);
+  });
+}

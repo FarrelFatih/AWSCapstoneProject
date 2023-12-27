@@ -18,7 +18,7 @@ model Users {
   DOB            DateTime
   phoneNumber    String
   city           String?
-  wallet         Int?            @default(0)
+  wallet         Int?            @default(1000000)
   country        String?
   password       String
   role           String          @default("user")
