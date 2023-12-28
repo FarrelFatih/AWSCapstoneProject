@@ -25,7 +25,11 @@ app.use(express.json());
 app.use(
   cors({
     credentials: true,
-    origin: ["https://digitalpioneer.vercel.app", "http://localhost:3000"],
+    origin: [
+      "https://digitalpioneer.vercel.app",
+      "http://localhost:3000",
+      "https://main.d3b7rgsevl6kkr.amplifyapp.com",
+    ],
     methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
     allowedHeaders: "Content-Type,Authorization",
   })
