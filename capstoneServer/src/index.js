@@ -16,6 +16,8 @@ const companyLayananControllers = require("./api/controllers/company/layanan.js"
 const companybillingControllers = require("./api/controllers/company/billing.js");
 const userbillingControllers = require("./api/controllers/user/billing.js");
 const userpaymentControllers = require("./api/controllers/user/payment.js");
+const http = require("http");
+const https = require("https");
 
 const app = express();
 const PORT = 8080;
@@ -93,12 +95,22 @@ app.get("/hello", (req, res) => {
   res.send("Hello World!");
 });
 
+// your express configuration here
+
+var httpServer = http.createServer(app);
+var httpsServer = https.createServer(TOKEN_SECRET, app);
+
+// For http
+httpServer.listen(8080);
+// For https
+httpsServer.listen(8443);
+
 // ----- # Company routes # ----- //
 
-if (process.env.ENVIROMENT === "production") {
-  module.exports.handler = serverless(app);
-} else {
-  app.listen(PORT, () => {
-    console.log(`Server is running on port ${PORT}`);
-  });
-}
+// if (process.env.ENVIROMENT === "production") {
+//   module.exports.handler = serverless(app);
+// } else {
+//   app.listen(PORT, () => {
+//     console.log(`Server is running on port ${PORT}`);
+//   });
+// }
