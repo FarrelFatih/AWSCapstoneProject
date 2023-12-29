@@ -17,7 +17,6 @@ const companybillingControllers = require("./api/controllers/company/billing.js"
 const userbillingControllers = require("./api/controllers/user/billing.js");
 const userpaymentControllers = require("./api/controllers/user/payment.js");
 const http = require("http");
-const https = require("https");
 
 const app = express();
 const PORT = 8080;
@@ -98,7 +97,6 @@ app.get("/hello", (req, res) => {
 // your express configuration here
 
 var httpServer = http.createServer(app);
-var httpsServer = https.createServer(TOKEN_SECRET, app);
 
 // For http
 httpServer.listen(8080);
