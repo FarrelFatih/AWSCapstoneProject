@@ -99,9 +99,10 @@ app.get("/hello", (req, res) => {
 var httpServer = http.createServer(app);
 
 // For http
-httpServer.listen(8080);
+httpServer.listen(8080, () => {
+  console.log(`Server is running on port ${PORT}`);
+});
 // For https
-httpsServer.listen(8443);
 
 // ----- # Company routes # ----- //
 
